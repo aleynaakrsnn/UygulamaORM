@@ -1,0 +1,49 @@
+﻿@model UygulamaORM.Models.ViewModels.UrunlerVM
+
+<h2>Ürün @(Model.Urunler.Id <= 0 ? "Add" : "Edit")</h2>
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="Urunler.Id" type="hidden" />
+    <input asp-for="Urunler.Resim" type="hidden" />
+
+    @if (@Model != null)
+    {
+        <div class="col-6">
+            <img src="@Model.Urunler.Resim" width="250px" />
+        </div>
+    }
+
+    <div class="row my-1">
+        <label asp-for="Urunler.UrunAdi"></label>
+        <input asp-for="Urunler.UrunAdi" class="form-control" />
+    </div>
+
+    <div class="row my-1">
+        <label asp-for="Urunler.Aciklama"></label>
+        <input asp-for="Urunler.Aciklama" class="form-control" />
+    </div>
+    <div class="row my-1">
+        <label asp-for="Urunler.Fiyat"></label>
+        <input asp-for="Urunler.Fiyat" class="form-control" />
+    </div>
+    <div class="row my-1">
+        <label asp-for="Urunler.Barcode"></label>
+        <input asp-for="Urunler.Barcode" class="form-control" />
+    </div>
+    <div class="row my-1">
+  <label asp-for="Urunler.KategoriId"></label> 
+  <select asp-for="Urunler.KategoriId"
+  asp-items="@Model.KategoriList" class="form-control">
+ <option disabled selected> --Please Select a Category--
+     </option>
+        </select>
+    </div>
+    <div class="row my-1">
+        <label asp-for="Urunler.Resim"></label>
+        <input type="file" id="file" name="file" 
+            accept="image/*" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        @(Model.Urunler.Id <= 0 ? "Add" : "Edit")</button>
+
+</form>
